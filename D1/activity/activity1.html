@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Activity 1</title>
+    </head>
+    <body>
+        <header>
+            <h1>Welcome to Cafe Delights</h1>
+        </header>
+        <p>Your cozy corner for the best coffee and treats in town</p>
+        <h2>Contact Us</h2>
+        <p>We love to hear from you Please fill out the form below</p>
+        <main>
+            <section>
+                <form action="" method="post">
+                    <div>
+                        <p>Personal Information</p>
+                        <label>Name: 
+                            <input type="text" name="name" required>
+                        </label><br><br>
+                        <label>Email: 
+                            <input type="email" name="email" required>
+                        </label><br><br>
+                        <label>Phone Number: 
+                            <input type="tel" required placeholder="123-456-7890" name="phone_number">
+                        </label><br><br>
+                        <label>Date of Birth: 
+                            <input type="date" name="b_day" required>
+                        </label><br><br>
+                    </div>
+                    <div>
+                        <p>Visit Information</p>
+                        <label>Preferred Visit Date: 
+                            <input type="date">
+                        </label><br><br>
+                        <label>Preferred Time
+                            <input type="time">
+                        </label><br><br>
+                        <p>Are you a returning customer?</p>
+                        <label for=""><input type="radio" name="old_customer"/> Yes</label><br>
+                        <label for=""><input type="radio" name="old_customer"/>No</label>
+                    </div>
+                    <hr>
+                    <div>
+                        <p>Order Preferences</p>
+                        <label for="drinks">Favorite Drink:</label>
+                        <select name="drink" id="drink">
+                            <option value="latte">Latte</option>
+                        </select>
+                        <br>
+                        <label>Select your dietary preferences</label><br>
+                        <input type="checkbox" name="dietary" id="vegan">
+                        <label for="vegan">Vegan</label><br>
+                        <input type="checkbox" name="dietary" id="vegetarian">
+                        <label for="vegetarian">Vegetarian</label><br>
+                        <input type="checkbox" name="dietary" id="gluten_free">
+                        <label for="gluten_free">Gluten-Free</label>
+                    </div>
+
+                    <div>
+                        <p>Feedback</p>
+                        <label for="rate">Rate your last vist(1-5):</label>
+                        <input type="range" name="rate" id="rate" min="1" max="5">
+                        <br><br>
+                        <label>Additional Commets</label><br>
+                        <textarea  name="" id="" cols="30" rows="5" placeholder="Tell us about your experience"></textarea>
+                        <br>
+                        <p>Would you like to receive our newsletter?<input type="checkbox"/></p>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>
