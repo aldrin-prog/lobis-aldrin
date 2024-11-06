@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial,sans-serif;
+}
+.container{
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+.left-container img{
+    max-width: 700px;
+}
+.right-container{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.right-container h1{
+   
+    font-size: 50px;
+}
+    .right-container h1 em{
+        font-style: normal;
+        color: gold;
+    }
+.right-container .why_choose_us{
+    font-size: 20px;
+    font-weight: bolder;
+}
+.right-container button{
+        width: max-content;
+        margin-top: 50px;
+        padding: 10px 20px;
+        font-weight: bold;
+        border: none;
+        background-color: gold;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+}

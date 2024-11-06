@@ -1,0 +1,40 @@
+.logo img{
+    width: 4.5em;;
+}
+.navbar{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    align-items: center;
+    padding: 10px 5px;
+    justify-content: space-around;
+    box-shadow: 5px 10px 10px rgb(0, 0, 0,0.1);
+}
+.nav-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    font-size: 15px;
+    gap: 30px;
+}
+    .nav-links a{
+        text-decoration: none;
+        color: black;
+    }
+    .nav-links a:hover{
+        color: gold;
+    }
+    .nav-links a.active{
+        color: gold;
+
+    }
+.nav-icons{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+    .nav-icons img{
+        width: 20px;
+    }
