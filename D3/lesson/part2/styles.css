@@ -1,0 +1,31 @@
+/* Universal selector */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial,sans-serif;
+    
+}
+/* ID selector */
+#main-header{
+    background-color: #332;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.highlight{
+    color:teal;
+    padding: 10;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+}
+/* Attribute selector */
+[data-action="submit"]{
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
