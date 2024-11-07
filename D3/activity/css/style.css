@@ -4,38 +4,34 @@
     font-family: Arial,sans-serif;
 }
 
-.container{
+header{
     display: flex;
+    flex-direction: column;
+    gap: 60px;
     padding: 150px 50px;
     background-image: url('../images/main_img.png');
     background-repeat: no-repeat;
     background-size: 550px;
     background-position-x: right;
     background-position-y: 100px;
+    
 }
 
-.left-container{
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-}        
-    .left-container h1{
+    header h1{
         font-size: 60px;
         width: max-content;
         max-width: 490px;
     }
-    .left-container h1 em{
+        header h1 em{
         color:gold;
         font-style: normal;
         font-family: serif;
     }
-    .left-container p{
+    header p{
         margin-left: 70px;
         max-width: 800px;
-
-        z-index: 30;
     }
-    .left-container button{
+    header button{
         width: max-content;
         margin-left: 70px;
         padding: 10px 20px;
@@ -46,3 +42,114 @@
         border-radius: 5px;
         cursor: pointer;
     }
+.container{
+    padding: 100px;
+}
+section#about_us{
+    display: flex;
+}
+    section#about_us img{
+        max-width: 700px;
+    }
+    section#about_us .about_us-container{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    section#about_us .about_us-container h1{
+   
+        font-size: 50px;
+    }
+        section#about_us .about_us-container h1 em{
+            font-style: normal;
+            color: gold;
+        }
+        section#about_us .about_us-container .why_choose_us{
+        font-size: 20px;
+        font-weight: bolder;
+    }
+    section#about_us .about_us-container button{
+            width: max-content;
+            margin-top: 50px;
+            padding: 10px 20px;
+            font-weight: bold;
+            border: none;
+            background-color: gold;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+    }
+.card{
+    padding: 20px;
+    box-shadow: 10px 10px 10px rgb(0, 0, 0,0.1);
+    border-radius: 15px;
+    width: min-content;
+}
+.section-header{
+    text-align: center;
+    margin: 30px 0px;
+    font-size: 50px;
+}
+    .section-header em{
+        font-style: normal;
+        color: gold;
+    }
+/* Menu section */
+section#menu{
+    padding: 100px;
+}
+
+section#menu .menu-lists{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+    section#menu  .card-header-img{
+        min-width: 100px;
+        max-width: 300px;
+    }
+    section#menu .item-info{
+        display: flex ;
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 10px;
+    }
+        section#menu .item-info .item-name{
+            color: gold;
+            font-size: 30px;
+        }
+        section#menu .ratings{
+            display: flex;
+            justify-content: center;
+        }
+            section#menu .ratings img{
+            max-width: 20px;
+            }
+        section#menu .item-info button{
+            /* max-width: 1000px; */
+            padding: 10px 40px;
+            border: none;
+            background-color: black;
+            color: white;
+            align-self: center;
+            cursor: pointer;
+        }
+/* Our Gallery */
+section#gallery{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+    section#gallery .gallery-images{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px ;
+        justify-content: center;
+    }
+    section#gallery .image-container img{
+        max-width: 400px;
+        
+    } 
+        
