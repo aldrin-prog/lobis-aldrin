@@ -23,12 +23,11 @@
         text-decoration: none;
         color: black;
     }
-    .nav-links a:hover{
+    /* .nav-links a:hover{
         color: gold;
-    }
-    .nav-links a.active{
+    } */
+    .nav-links a:target{
         color: gold;
-
     }
 .nav-icons{
     display: flex;
