@@ -198,3 +198,22 @@ section#reviews{
         margin:10px 0px;
     }
 
+/* Footer */
+footer .container{
+    display: flex;
+    justify-content: space-between;
+}
+    footer .container div{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    footer .container ul{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 12px;
+    }
