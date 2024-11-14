@@ -1,7 +1,15 @@
 const productElem=document.querySelectorAll('.add_cart');
-const btnRemoveElem=document.querySelectorAll('.btn_remove');
-const carts_data={};
+const checkoutBtn=document.querySelector('#checkout');
+let carts_data={};
 let total=0;
+checkoutBtn.addEventListener('click',function(event){
+    const elem=event.target;
+    carts_data={};
+    total=0;
+    document.getElementById('total_price').innerText=total;
+    elem.style.display="none";
+    document.getElementById('carts').innerHTML="";
+});
 productElem.forEach(element => {
     element.addEventListener('click',function(event){
     const element=event.target;
@@ -31,7 +39,7 @@ productElem.forEach(element => {
         btnElem.innerText="Remove";
         btnElem.setAttribute('data-price',price);
         btnElem.setAttribute('data-qty',carts_data[name]);
-        btnElem.setAttribute('class','btn_remove');
+        btnElem.setAttribute('id','btn_remove'+name);
         qtyElem.innerText=' '+carts_data[name];
         newElem.appendChild(divCon);
         divCon.appendChild(productNameElem);
@@ -41,8 +49,12 @@ productElem.forEach(element => {
         cartLists.appendChild(newElem);
     }
     else{
+        // btnElem.setAttribute('data-qty',carts_data[name]);
+        // btnElem.attributes('data-qty').;
+        const buttonRemove=document.getElementById('btn_remove'+name);
+        buttonRemove.setAttribute('data-qty',carts_data[name]);
         document.getElementById('qty_'+name).innerText=' '+carts_data[name];
-
+        
     }
     btnElem.addEventListener('click',function(event){
         const elem=event.target;
@@ -52,7 +64,19 @@ productElem.forEach(element => {
         total-=sub_price;
         totalElem.innerHTML=total;
         carts_data[name]=0;
+        const cartListData=cartLists.children;
+        if(cartListData.length<=0){
+            document.getElementById('checkout').style.display='none';
+        }else{
+            document.getElementById('checkout').style.display='block';
+        }
     });
+    const cartListData=cartLists.children;
+    if(cartListData.length<=0){
+        document.getElementById('checkout').style.display='none';
+    }else{
+        document.getElementById('checkout').style.display='block';
+    }
     totalElem.innerHTML=total;
     })
 });
