@@ -31,6 +31,7 @@ class Library{
         const regex=new RegExp(`\\b${title}\\b`,'i');
         const result=this.#books.filter(book=>regex.test(book.getTitle()));
         result.map(book=>book.displayInfo());
+        return result;
         // console.log(result); 
         // result.displayInfo();
     }
@@ -90,7 +91,7 @@ class Book{
             const author = $("#author").val();
             const genre = $("#genre").val();
             lib.addBook(title,author,genre);
-            displayBooks();
+            displayBooks(lib.getBooks());
             $("#title").val("");
             $("#author").val("");
             $("#genre").val("");
@@ -100,15 +101,21 @@ class Book{
             const index=$(this).data('index');
             const book=lib.getBook(index);
             book.borrowBook();
-            displayBooks();
+            displayBooks(lib.getBooks());
         });
         $(document).on("click",".return-book",function(){
             // console.log($(this).data('index'));
             const index=$(this).data('index');
             const book=lib.getBook(index);
             book.returnBook();
-            displayBooks();
+            displayBooks(lib.getBooks());
         });
+        $('#search_book').on("input",function(){
+            const value=$(this).val();
+            const result=lib.searchBook(value);
+            console.log(result);
+            displayBooks(result);
+        })
         $('#showBook').on('shown.bs.modal',function(e){
             const button        = $(e.relatedTarget);
             const index         = button.data('index');
@@ -134,9 +141,11 @@ class Book{
             $(this).find('.modal-footer').html(htmlFooter);;
         })  
         // function display books
-        function displayBooks(){
+        function displayBooks(books){
+            
+            console.log(books);
             let html="";
-            const books=lib.getBooks();
+            // const books=lib.getBooks();
             books.map((book,index)=>{
                 html+=`<div class="col-md-3" >
                             <div class="card p-2">
@@ -150,8 +159,9 @@ class Book{
                                 <button class="show-book btn mt-3 btn-info btn-sm" data-index=${index} data-bs-toggle="modal" data-bs-target="#showBook">Show</button>
                             </div>
                         </div>`
-                $('div#list-books').html(html);
+                
             })
+            $('div#list-books').html(html);
         }
 
      })
