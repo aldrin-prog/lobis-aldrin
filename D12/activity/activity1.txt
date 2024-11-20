@@ -1,0 +1,85 @@
+1.Retrieve all courses in the "Programming" category.
+    db.categories.find({name:"Programming"})
+2.Retrieve all students enrolled in the course "Introduction to MongoDB".
+    db.courses.aggregate([
+        {
+            $match:{title:"Introduction to MongoDB"}
+        },
+        {
+            $lookup: {
+                from: "students",       
+                localField: "students", 
+                foreignField: "_id",    
+                as: "studentDetails" 
+            }
+        },
+        {
+            $unwind: "$studentDetails"
+        },
+        {
+            $project:{
+            _id:0,
+            "studentDetails.name":1
+            }
+        }
+    ]);
+
+3.Retrieve course details, including category and instructor information, for all courses.
+    db.courses.aggregate([
+        {
+            $lookup:{
+                from:"categories",
+                localField:"category",
+                foreignField:"_id",
+                as:"courseCategory"
+            },
+            
+        },
+        {
+            $lookup:{
+                from:"instructors",
+                localField:"instructor",
+                foreignField:"_id",
+                as:"courseInstructor"
+            }
+        },
+        {
+            $project:{
+                title:1,
+                "courseCategory.name":1,
+                "courseInstructor.name":1,
+            }
+        }
+    ]);
+4.Retrieve all reviews for the course "Data Science with Python," including the details of the students who wrote them.
+    db.courses.aggregate([
+        {
+            $match:{title:"Data Science with Python"}
+        },
+        {
+            $lookup:{
+                from:"students",
+                localField:"reviews.student",
+                foreignField:"_id",
+                as:"studentDetails"
+            }
+        },
+        {
+            $unwind:"$reviews"
+        },
+        {
+            $project:{
+                title:1,
+                "studentDetails.name":1,
+                "reviews.comment":1,
+                "reviews.rating":1
+            }
+        }
+    ]);
+5.Find the average rating for each course.
+
+6.Retrieve all courses taught by the instructor "Jane Doe".
+7.Count the number of courses in each category.
+8.Find all students who have reviewed the course "Introduction to MongoDB".
+9.Retrieve the titles of all courses where the average rating is above 4.
+10.Retrieve all students who are enrolled in courses taught by "John Smith".
