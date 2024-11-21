@@ -77,9 +77,117 @@
         }
     ]);
 5.Find the average rating for each course.
-
+db.courses.aggregate([
+  {
+    $unwind: "$reviews"  
+  },
+  {
+    $group: {
+      _id: "$title",             
+      averageRating: { $avg: "$reviews.rating" }
+    }
+  }
+]);
 6.Retrieve all courses taught by the instructor "Jane Doe".
+db.courses.aggregate([
+    {
+        $lookup:{
+            from:"instructors",
+            localField:instructor,
+            foreignField:"_id",
+            as:"instructorDetails"
+        }
+    },
+    {
+        $match:{
+            "instructorDetails.name":"Jane Doe"
+        }
+    },
+    {
+        $project:{
+            title:1
+        }
+    }
+
+])
 7.Count the number of courses in each category.
+db.courses.aggregate([
+    {
+        $group: {
+        _id: "$category",             
+        total: { $sum: 1 }
+        }
+    }
+])
 8.Find all students who have reviewed the course "Introduction to MongoDB".
+db.courses.aggregate([
+    {
+        $match:{title:"Introduction to MongoDB"}
+    },
+    {
+        $lookup:{
+            from:"students",
+            localField:"reviews.student",
+            foreignField:"_id",
+            as:"studentDetails"
+        }
+    },
+    {
+        $project:{
+            "_id":0,
+            "studentDetails.name":1
+        }
+    }
+])
 9.Retrieve the titles of all courses where the average rating is above 4.
+db.courses.aggregate([
+  {
+    $unwind: "$reviews"  
+  },
+  {
+    $group: {
+      _id: "$title",             
+      averageRating: { $avg: "$reviews.rating" }
+    }
+  },
+  {
+    $match:{averageRating:{$gt:4}}
+  }
+]);
 10.Retrieve all students who are enrolled in courses taught by "John Smith".
+db.courses.aggregate([
+    {
+        $lookup:{
+            from:"students",
+            localField:"students",
+            foreignField:"_id",
+            as:"studentDetails"
+        }
+    },
+    {
+        $unwind:"$studentDetails"
+    },
+    {
+        $lookup:{
+            from:"instructors",
+            localField:"instructor",
+            foreignField:"_id",
+            as:"instructorDetails"
+        }
+    },
+    {
+        $unwind:"$instructorDetails"
+    },
+    {
+        $match:{
+            "instructorDetails.name":"John Smith",
+        }
+    },
+    {
+        $group: { 
+            _id: {
+                studentName: "$studentDetails.name"
+            }
+        }
+    }
+])
