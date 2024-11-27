@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
 dotenv.config(); 
 const app = express();
 // Middleware
@@ -12,6 +13,7 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/blogs',blogRoutes);
+app.use('/api/comments',commentRoutes);
 // MongoDB connection
 const connectToDatabase = async () => {
     try {

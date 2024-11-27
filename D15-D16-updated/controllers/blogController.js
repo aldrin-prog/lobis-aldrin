@@ -31,4 +31,37 @@ const getBlogById = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
-export {createBlog,getBlogs,getBlogById};
+const updateBlog=async (req,res) =>{
+    try {
+        const {id}=req.params;
+        const {title,content}=req.body;
+        const blog=await Blog.findById(id);
+        if(!blog)
+            return res.status(404).json({error:"Blog Not Found"});
+        console.log(blog.author.toString()+"-"+req.user._id);
+        if(blog.author.toString()!=req.user._id)
+            return res.status(403).json({error:"Not Authorized"});
+        blog.title=title;
+        blog.content=content;
+        const setBlog=await blog.save();
+        res.status(200).json(setBlog);
+    } catch (error) {
+        res.status(500).json({error:"Server Error " + error})
+    }
+}
+const deleteBlog=async (req,res) =>{
+    try {
+        const {id}=req.params;
+        const blog=await Blog.findById(id);
+        if(!blog)
+            return res.status(404).json({error:"Blog not found"});
+        console.log(blog);
+        if(blog.author.toString()!=req.user._id)
+            return res.status(403).json({error:"Not Authorized"});
+        const destroyBlog=await blog.deleteOne();
+        res.status(200).json({message:"Blog Deleted"});
+    } catch (error) {
+        res.status(500).json({error:"Server Error "+error});
+    }
+}
+export {createBlog,getBlogs,getBlogById,updateBlog,deleteBlog};

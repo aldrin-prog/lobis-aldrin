@@ -25,7 +25,7 @@ const loginUser=async (req,res)=>{
         if(!isMatched)
             return res.status(400).json({error:"Invalid credentials"});
         //Generate JWT web token with user Id as payload
-        const token = jwt.sign({_id:user.id},process.env.JWT_SECRET,{expiresIn:"1h"});
+        const token = jwt.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:"1h"});
         res.status(200).json({
             token,
             user:{
