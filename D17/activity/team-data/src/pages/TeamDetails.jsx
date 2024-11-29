@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 const TeamDetails=()=>{
     const {teamId}=useParams();
     const {teams}=useContext(TeamContext);
-    const team=teams[teamId];
+    const team=teams[teamId-1];
 
     return (
         <div>

@@ -8,6 +8,7 @@ import TeamDetails from "./pages/TeamDetails"
 function App() {
   const [teams,setTeams]=useState([
     {
+      
       name:'John Doe',
       email:'johndoe@email.com',
       role:'setter'
