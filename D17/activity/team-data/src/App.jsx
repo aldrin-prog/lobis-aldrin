@@ -21,9 +21,9 @@ function App() {
 
   return (
     <>
-      <NavBar />
       <TeamContext.Provider value={{teams,setTeams}}>
         <Router>
+            <NavBar />
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="teams" element={<Team/>}/>
