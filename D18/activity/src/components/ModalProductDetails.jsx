@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Badge } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -16,7 +17,7 @@ const ModalProductDetails=(props)=>{
         <Container>
             
             <p>Description: {product.description}</p>
-            <p>Category: {product.category}</p>
+            <p>Category: <Badge bg="success">{product.category}</Badge></p>
             <p>Price: {product.price}</p>
             <p>Ratings: {product.rating.rate}</p>
         </Container>
