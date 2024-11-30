@@ -5,11 +5,13 @@ import { BiSolidStar } from "react-icons/bi";
 import ProductContext from '../store/ProductContext';
 const CardProduct = (props) => {
     const {product}=props;
-    const {modalShow,setModalShow,itemProduct,setItemProduct}=useContext(ProductContext);
+    const {modalShow,setModalShow,itemProduct,dispatch}=useContext(ProductContext);
     const handleShowDetails=async () =>{
         try {
-            await setItemProduct(product);
-            await setModalShow(!modalShow);
+            await dispatch({type:"SET_PRODUCT",payload:product});
+            await dispatch({type:"SHOW_PRODUCT"})
+            // await setItemProduct(product);
+            // await setModalShow(!modalShow);
         } catch (error) {
             console.log(error)
         }

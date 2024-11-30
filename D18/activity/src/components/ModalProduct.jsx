@@ -13,7 +13,6 @@ const ModalProduct=(props)=>{
             </Modal.Header>
             <Modal.Body className="grid-example">
                 <Container>
-                    
                     <p>Description: {product.description}</p>
                     <p>Category: <Badge bg="success">{product.category}</Badge></p>
                     <p>Price: {product.price}</p>
