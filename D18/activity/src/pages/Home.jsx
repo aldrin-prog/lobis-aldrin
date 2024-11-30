@@ -5,8 +5,9 @@ import ModalProductDetails from "../components/ModalProductDetails";
 import ProductContext from "../store/ProductContext";
 
 const Home=()=>{
+    // const 
     const [modalShow, setModalShow] = useState(false);
-    const [itemProduct,setItemProduct]=useState({});
+    const [itemProduct,setItemProduct]=useState(null);
     const [products,setProducts]=useState([]);
     const [query,setQuery]=useState("");
     const [categories,setCategories]=useState([]);
@@ -83,17 +84,17 @@ const Home=()=>{
                 </Col>
             </Row>
             <Row className="gap-4">
+            <ProductContext.Provider value={{modalShow,itemProduct,setItemProduct,setModalShow}}>
+                        
                 {
                     products.map((item,index)=>(
-                        <ProductContext.Provider value={{modalShow,itemProduct,setItemProduct,setModalShow}}>
                             <Col key={item.id}>
                                 <CardProduct product={item}/>
                             </Col>
-                        </ProductContext.Provider>
                         
                     ))
                 }
-                
+                </ProductContext.Provider>
             </Row>
             <ModalProductDetails show={modalShow} product={itemProduct} onHide={()=>{setModalShow(false)}}/>
         </Container>
