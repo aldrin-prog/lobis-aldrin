@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
 import User from '../models/User.js';
 
 const register=async (req, res)=>{
@@ -31,4 +31,19 @@ const login = async (req,res)=>{
         
     }
 }
-export {register,login};
+const verifyToken=(req,res)=>{
+    try {
+        const {token}=req.body;
+        const decoded= jwt.verify(token,process.env.JWT_SECRET);
+        res.status(200).json({message:"Token is valid",isValid:true});
+    } catch (error) {
+        if (error.name === 'TokenExpiredError') {
+            return res.status(403).json({ message: 'Token has expired' });
+        } else if (error.name === 'JsonWebTokenError') {
+        return res.status(403).json({ message: 'Invalid token' });
+        } else {
+            return res.status(500).json({ message: 'Failed to authenticate token' });
+        }
+    }
+}
+export {register,login,verifyToken}; 
