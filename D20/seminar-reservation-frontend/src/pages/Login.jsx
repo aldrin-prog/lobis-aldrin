@@ -28,7 +28,7 @@ const Login=()=>{
     return(
         <div className="card m-auto mt-10 bg-dark-300 card-compact bg-base-100 w-96 shadow-xl">
             <div className="card-body">
-                <h2 className="card-title m-auto">Admin Login</h2>
+                <h2 className="card-title m-auto">Login</h2>
                 <form onSubmit={handleSubmit}>
                     <label className="input mb-3 input-bordered flex items-center gap-2">
                         Email

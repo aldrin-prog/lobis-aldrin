@@ -4,23 +4,14 @@ import SeminarCard from "../components/SeminarCard";
 import { fetchSeminars,verifyToken } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/AuthContext";
+import { useSeminar } from "../store/SeminarContext";
 const Dashboard=()=>{
-    const navigate=useNavigate();
-    const [seminars,setSeminar]=useState([]);
+    const {seminars,fetchSeminars}=useSeminar();
     useEffect(()=>{
-        const setUp=async ()=>{
-            try {
-                const data=await fetchSeminars();
-                setSeminar(data)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        setUp();
+        fetchSeminars();
     },[])
     return (
         <div>
-            <AppNavbar/>
             <a href="/add-seminar" className="btn btn-primary ml-3 btn-sm">Add seminar</a>
             <div className="grid gap-4 grid-cols-3 p-5">
                 {

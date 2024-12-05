@@ -3,7 +3,7 @@ import { verifyToken } from '../services/api';
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [isAuthenticated, setIsAuthenticated] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const login=async ()=>{
         try {
             const isValidToken=await verifyToken();

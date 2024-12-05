@@ -14,7 +14,6 @@ const EditSeminar=()=>{
                 const seminarData=await fetch(`${URL}/api/seminars/${id}`);
                 const data=await seminarData.json();
                 setSeminar(data);
-                console.log(data);
             } catch (error) {
                 console.log(error);
             }
@@ -23,7 +22,6 @@ const EditSeminar=()=>{
     },[])
     return (
         <div>
-            <AppNavbar/>
             {
                 seminar ? <EditFormSeminar seminar={seminar}/> : ""
             }

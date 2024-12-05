@@ -10,8 +10,6 @@ export function ProtectedRoute({ children }) {
         const validateToken=async()=>{
             try {
                 const isValidToken=await verifyToken();
-                console.log(isValidToken);
-                console.log("Here");
                 setIsUserAuthenticated(isValidToken);
             } catch (error) {
                 console.log(error);

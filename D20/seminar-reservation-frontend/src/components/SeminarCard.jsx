@@ -11,7 +11,7 @@ const SeminarCard=(props)=>{
             buttons: true,
             dangerMode: true,
           })
-          .then(() => {
+          .then((action) => {
             const actionDeleteSeminar=async ()=>{
                 try {
                     const response=await deleteSeminar(seminar._id);
@@ -21,10 +21,11 @@ const SeminarCard=(props)=>{
                         });
                     }
                 } catch (error) {
-                    
+                    console.error(error);
                 }
             }
-            actionDeleteSeminar();
+            if(action)
+                actionDeleteSeminar();
         });
     }
     return (
