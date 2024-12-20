@@ -4,7 +4,6 @@ import cookieParser from "cookie-parser";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 const register=async(req,res)=>{
-
     try {
         const errors=validationResult(req);
         if(!errors.isEmpty())
@@ -32,7 +31,7 @@ const login=async(req,res)=>{
         const isMatched=await bcrypt.compare(password,user.password);
         if(!isMatched)
             return res.status(400).json({message:"Invalid credentials"});
-        const token=jwt.sign({id:user._id},process.env.JWT_SECRET_KEY,{expiresIn:'1h'});
+        const token=jwt.sign({id:user._id},process.env.JWT_SECRET_KEY,{expiresIn:'1d'});
         res.cookie("auth_token",token,{
             httpOnly:true,
             secure: true,     

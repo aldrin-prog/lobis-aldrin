@@ -9,6 +9,7 @@ const eventSchema=new mongoose.Schema({
         from:{type:String,required:true},
         to:{type:String,required:true},
     },
+    image:{type:String,default:""},
     venue:{type:String,required:true},
     fee:{type:Number,required:true},
     slotsAvailable: {type:Number,default:0},

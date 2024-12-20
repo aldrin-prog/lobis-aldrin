@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'https://drws58h3-5173.asse.devtunnels.ms',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -22,7 +22,7 @@ app.use(
 app.use("/api/auth/", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/user",userRoutes);
-// app.use("/api/bookings",bookingRoutes);
+app.use("/api/bookings",bookingRoutes);
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
