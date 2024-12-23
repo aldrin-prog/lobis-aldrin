@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Targeting the Summernote container */
+.summernote-container *{
+all:revert
+}

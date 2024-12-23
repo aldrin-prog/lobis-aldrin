@@ -36,9 +36,9 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" onChange={(e)=>setPassword(e.target.value)} defaultValue={password} placeholder="password" className="input input-bordered" required />
-                            <label className="label">
+                            {/* <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+                            </label> */}
                             <label className="label">
                                 <Link to="/register" className="label-text-alt">Create An Account</Link>
                             </label>

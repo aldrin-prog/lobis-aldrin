@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainLayout from "./layout/mainLayout";
+import MainLayout from "./layout/MainLayout";
 import Landing from "./pages/Landing";
 import Events from "./pages/Events";
 import Dashboard from "./pages/Dashboard";
@@ -10,6 +10,9 @@ import EditEvent from "./pages/EditEvent";
 import { AppProvider } from "./context/AppContext";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import EventInformation from "./pages/EventInformation";
+import EditProfile from "./pages/EditProfile";
+import MyBookings from "./pages/MyBookings";
 function App() {
   return (
     <>
@@ -31,6 +34,14 @@ function App() {
               element={
                 <MainLayout>
                   <Events />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/events/:id"
+              element={
+                <MainLayout>
+                  <EventInformation />
                 </MainLayout>
               }
             />
@@ -63,6 +74,22 @@ function App() {
               element={
                 <UserLayout>
                   <Profile />
+                </UserLayout>
+              }
+            />
+            <Route
+              path="profile/edit"
+              element={
+                <UserLayout>
+                  <EditProfile />
+                </UserLayout>
+              }
+            />
+            <Route
+              path="/my-bookings"
+              element={
+                <UserLayout>
+                  <MyBookings/>
                 </UserLayout>
               }
             />

@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import EditorComponent from "./EditorComponent";
+import InputDateRangePicker from "./DateRangePicker";
 const EventForm = (props) => {
-    const {handleSubmit,event,setEvent,text} = props;
+    const {handleSubmit,event,setEvent,text,action} = props;
     const handleChange=(e)=>{
         const {name,value}=e.target;
         setEvent(prev=>(
             {...prev,[name]:value}
         ))
+    }
+    const handleChangeEditor=(value)=>{
+        console.log(value)
     }
     const handleChangeTime=(e)=>{
         const {name,value}=e.target;
@@ -17,24 +21,30 @@ const EventForm = (props) => {
             }}
         ))
     }
-    useEffect(() => {
-        if (!event) {
-            setEvent({
-                "title": "",
-                "tags": "",
-                "description": "",
-                "date": "",
-                "timeFrame": {
-                    "from": "",
-                    "to": ""
-                },
-                "venue": "",
-                "fee": 0,
-                "slotsAvailable": 0
-            }
-            )
-        }
-    }, [])
+    const handleChangeImage=(e)=>{
+        const {name}=e.target;
+        const file=e.target.files[0];
+        console.log(name);
+        setEvent(prev=>({...prev,[name]:file}));
+    }
+    // useEffect(() => {
+    //     if (!event) {
+    //         setEvent({
+    //             "title": "",
+    //             "tags": "",
+    //             "description": "",
+    //             "date": "",
+    //             "timeFrame": {
+    //                 "from": "",
+    //                 "to": ""
+    //             },
+    //             "venue": "",
+    //             "fee": 0,
+    //             "slotsAvailable": 0
+    //         }
+    //         )
+    //     }
+    // }, [])
     if(!event)
         return (<div>Loding</div>)
     return (
@@ -50,6 +60,17 @@ const EventForm = (props) => {
                         placeholder="Event Title"
                         className="input input-bordered w-full"
                         value={event.title}
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium mb-1">Image</label>
+                    <input
+                        onChange={handleChangeImage}
+                        type="file"
+                        name="image"
+                        placeholder="Event Title"
+                        className="file-input w-full focus:outline-none  input-bordered "
+                        // defaultValue={event.image}
                     />
                 </div>
                 <div>
@@ -69,46 +90,45 @@ const EventForm = (props) => {
 
                 <div>
                     <label className="block text-sm font-medium mb-1">Description</label>
-                    <textarea
-                        onChange={handleChange}
-                        defaultValue={event.description}
-                        name="description"
-                        placeholder="Event Description"
-                        className="textarea textarea-bordered w-full"
-                    ></textarea>
+                    <textarea className="textarea" onChange={handleChange} name="description">{event.description}</textarea>
+                    {/* { event.description!=''?<EditorComponent value={event.description}/>:<EditorComponent value=""/>} */}
+                    
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium mb-1">Date</label>
-                    <input
-                        onChange={handleChange}
-                        type="date"
-                        name="date"
-                        className="input input-bordered w-full"
-                        value={event.date}
-                    />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-y-5">
                     <div>
-                        <label className="block text-sm font-medium mb-1">From</label>
+                        <label className="block text-sm font-medium mb-1">Date</label>
                         <input
-                            onChange={handleChangeTime}
-                            type="time"
-                            name="from"
+                            onChange={handleChange}
+                            type="date"
+                            name="date"
                             className="input input-bordered w-full"
-                            defaultValue={event.timeFrame.from}
+                            defaultValue={event.date}
                         />
+                        {/* <InputDateRangePicker/> */}
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium mb-1">To</label>
-                        <input
-                            onChange={handleChangeTime}
-                            type="time"
-                            name="to"
-                            className="input input-bordered w-full"
-                            defaultValue={event.timeFrame.to}
-                        />
+
+                    <div className="grid grid-cols-1 gap-4 h-max">
+                        <div>
+                            <label className="block text-sm font-medium mb-1">From</label>
+                            <input
+                                onChange={handleChangeTime}
+                                type="time"
+                                name="from"
+                                className="input input-bordered w-full"
+                                defaultValue={event.timeFrame.from}
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1">To</label>
+                            <input
+                                onChange={handleChangeTime}
+                                type="time"
+                                name="to"
+                                className="input input-bordered w-full"
+                                defaultValue={event.timeFrame.to}
+                            />
+                        </div>
                     </div>
                 </div>
 

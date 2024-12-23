@@ -12,7 +12,7 @@ const Landing = () => {
     <>
       <main>
         <Header />
-        <section className="py-12 px-4 md:px-6 lg:px-8">
+        {/* <section className=" py-12 px-4 md:px-6 lg:px-8">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">
               Upcoming Events
@@ -51,7 +51,7 @@ const Landing = () => {
               </a>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );

@@ -1,9 +1,12 @@
 import Booking from '../models/Booking.js';
 import Event from '../models/Event.js';
+import connectDB from '../utils/db_connection.js';
 import createPaymentIntent from '../utils/stripe.js';
 // import createPaymentIntent from '../utils/stripe.js';
 const createBooking = async (req, res,next) => {
+  
   try {
+    await connectDB();
     const{id}=req.params;
     const event = await Event.findById(id);
     if (!event) return res.status(404).json({ message: 'Event not found' });
@@ -22,6 +25,7 @@ const createBooking = async (req, res,next) => {
 
 const getUserBookings = async (req, res) => {
   try {
+    await connectDB();
     const bookings = await Booking.find({ user: req.user.id }).populate('event');
     res.status(200).json(bookings);
   } catch (error) {
@@ -31,6 +35,7 @@ const getUserBookings = async (req, res) => {
 
 const updateBookingStatus = async (req, res,next) => {
   try {
+    await connectDB();
     const { id } = req.params;
     const { paymentStatus } = req.body;
     // Validate paymentStatus
@@ -58,6 +63,7 @@ const updateBookingStatus = async (req, res,next) => {
 };
 const processPayment=async(req,res,next)=>{
     try {
+      
         const {amount}=req.body;
         const paymentIntent= await createPaymentIntent(amount);
         res.status(200).json({message:"Create payment intent",paymentIntent});
@@ -70,6 +76,7 @@ const processPayment=async(req,res,next)=>{
 }
 const getUserBookingByEvent=async (req,res)=>{
   try {
+    await connectDB();
     const {eventId}=req.body;
     const booking=await Booking.findOne({user:req.user.id,event:eventId});
     res.status(200).json(booking);

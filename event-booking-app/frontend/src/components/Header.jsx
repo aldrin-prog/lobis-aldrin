@@ -10,10 +10,10 @@ const Header = () => {
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Book an Event</h1>
                     <p className="mb-5">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    "Find extraordinary events tailored for you. 
+                    Enjoy seamless booking, unique experiences, and unforgettable moments. Your next adventure starts here!"
                     </p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <a href="/events" className="btn btn-primary">Get Started</a>
                 </div>
             </div>
         </div>

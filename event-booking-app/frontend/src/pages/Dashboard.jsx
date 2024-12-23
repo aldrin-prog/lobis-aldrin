@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { PlusCircle, Edit, Trash } from 'lucide-react'
+import { PlusCircle, Edit, Trash, Eye } from 'lucide-react'
 import AddForm from '../components/EventForm'
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert'
 import { useEvent } from '../context/AppContext'
+import Sidebar from '../components/Sidebar'
 const Dashboard = () => {
     const {userEvents,getEventUser,deleteEvent}=useEvent();
 
@@ -35,12 +36,11 @@ const Dashboard = () => {
         getEventUser();
     },[])
     return (
-
         <div className="p-4  w-full">
             <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
-            <Link to="/create-event" className="btn btn-primary mb-4" >
+            <a href="/create-event" className="btn btn-primary mb-4" >
                 <PlusCircle className="mr-2 " /> Add New Event
-            </Link>
+            </a>
             <div className="overflow-x-auto border  w-full">
                 <table className="table w-full">
                     <thead>
@@ -54,22 +54,25 @@ const Dashboard = () => {
                     </thead>
                     <tbody>
                         
-                        { userEvents ?  userEvents.map(event => (
+                        { userEvents && userEvents.length>0 ?  userEvents.map(event => (
                             <tr key={event._id}>
                                 <td>{event.title}</td>
                                 <td>{event.date}</td>
                                 <td>{event.timeFrame["from"]+'-'+event.timeFrame["to"]}</td>
                                 <td>{event.venue}</td>
                                 <td>
-                                    <Link to={`/admin/edit-event/${event._id}`} className="btn btn-ghost btn-xs" onClick={() => handleEditEvent(event)}>
+                                    <Link to={`/edit-event/${event._id}`} className="btn btn-ghost btn-xs" onClick={() => handleEditEvent(event)}>
                                         <Edit className="w-4 h-4" />
+                                    </Link>
+                                    <Link to={`/events/${event._id}`} className='btn btn-ghost btn-xs'>
+                                        <Eye className='w-4 h-4'/>
                                     </Link>
                                     <button className="btn btn-ghost btn-xs" onClick={() => handleDeleteEvent(event._id)}>
                                         <Trash className="w-4 h-4" />
                                     </button>
                                 </td>
                             </tr>
-                        )): <tr><td colSpan={5} className='text-center'>Loading</td></tr> }
+                        )) : userEvents && userEvents.length<=0 ? <tr><td colSpan={5} className='text-center'>No data</td></tr> : <tr><td colSpan={5} className='text-center'>Loading</td></tr> }
                     </tbody>
                 </table>
             </div>

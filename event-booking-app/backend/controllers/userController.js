@@ -2,8 +2,10 @@ import { validationResult } from "express-validator";
 import Event from "../models/Event.js";
 import User from "../models/User.js";
 import Booking from "../models/Booking.js";
+import connectDB from "../utils/db_connection.js";
 const getProfile=async (req,res)=>{
     try {
+        await connectDB();
         const user=await User.findById(req.user.id).select('-password');
         if(!user)
             return res.status(404).json({message:'User not found'});
@@ -14,6 +16,7 @@ const getProfile=async (req,res)=>{
 }
 const getUserEvents=async(req,res)=>{
     try {
+        await connectDB();
         const user=req.user;
         const events=await Event.find({user:user._id});
         res.status(200).json(events);
@@ -23,6 +26,7 @@ const getUserEvents=async(req,res)=>{
 }
 const getUserBookings=async(req,res)=>{
     try {
+        await connectDB();
         const bookings=await Booking.find({user:req.user.id}).populate("event");
         res.status(200).json(bookings);
     } catch (error) {
@@ -34,6 +38,7 @@ const updatePofile=async(req,res)=>{
     if(!errors.isEmpty())
         return res.status(400).json({message:errors.array()});
     try {
+        await connectDB();
         const {firstName,lastName,email,occupation,aboutSelf,homeAddress,phoneNumber,website}=req.body;
         console.log(req.body)
         const updateUser=await User.findByIdAndUpdate(req.user.id,{firstName,lastName,email,occupation,aboutSelf,homeAddress,phoneNumber,website},{new:true,runValidators:true}).select(["-password","-profileImage"]);
@@ -44,6 +49,7 @@ const updatePofile=async(req,res)=>{
 }
 const updateProfileImage = async (req, res) => {
     try {
+        await connectDB();
         if (req.file) {
             const filePath = req.file.path;
             const profileImageUpdate = await User.findByIdAndUpdate(

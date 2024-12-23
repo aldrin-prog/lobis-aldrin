@@ -3,8 +3,10 @@ import { validationResult } from "express-validator";
 import cookieParser from "cookie-parser";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import connectDB from "../utils/db_connection.js";
 const register=async(req,res)=>{
     try {
+        await connectDB();
         const errors=validationResult(req);
         if(!errors.isEmpty())
             return res.status(400).json({message:errors.array()})
@@ -20,7 +22,9 @@ const register=async(req,res)=>{
     }
 }
 const login=async(req,res)=>{
+    
     try {
+        await connectDB();
         const errors=validationResult(req);
         if(!errors.isEmpty())
             return res.status(400).json({message:errors.array()})

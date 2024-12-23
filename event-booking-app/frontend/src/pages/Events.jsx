@@ -8,9 +8,10 @@ import EventLists from "../components/EventLists";
 
 const Events = ({ onSelectEvent }) => {
 
-  const {events,fetchEvents}=useEvent();
+  const {events,fetchEvents,verifyToken}=useEvent();
   useEffect(()=>{
-    fetchEvents()
+    fetchEvents();
+    verifyToken();
   },[])
   return (
     events ? <EventLists events={events}/> : "Loading"

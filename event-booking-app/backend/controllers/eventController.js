@@ -3,12 +3,14 @@ import Event from "../models/Event.js";
 import { validationResult } from "express-validator";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import connectDB from "../utils/db_connection.js";
 const storeEvent=async (req,res)=>{
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ message: errors.array() });
     }
     try {
+        await connectDB();
         req.body.user=req.user._id;
         req.body.timeFrame=JSON.parse(req.body.timeFrame);
         req.body.image=req.file?req.file.path:"";      
@@ -24,6 +26,7 @@ const updateEvent=async(req,res)=>{
         return res.status(400).json({message:errors.array()})
 
     try {
+        await connectDB();
         const {id}=req.params;
         req.body.timeFrame=JSON.parse(req.body.timeFrame)
         req.body.image=req.file?req.file.path:req.body.image;       
@@ -35,6 +38,7 @@ const updateEvent=async(req,res)=>{
 }
 const getEvents=async(req,res)=>{
     try {
+        await connectDB();
         const events= await Event.find();
         res.status(200).json(events);
     } catch (error) {
@@ -43,6 +47,7 @@ const getEvents=async(req,res)=>{
 }
 const getEventById=async(req,res)=>{
     try {
+        await connectDB();
         const token=req.cookies["auth_token"];
         
         const{id}=req.params;
@@ -61,6 +66,7 @@ const getEventById=async(req,res)=>{
 }
 const destroy=async (req,res)=>{
     try {
+        await connectDB();
         const {id}=req.params;
         const user=req.user;
         const event=await Event.findOneAndDelete({_id:id,user:user.id});
