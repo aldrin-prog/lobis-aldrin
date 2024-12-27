@@ -22,12 +22,12 @@ const RegisterEvent = (props) => {
                     if(!response){
                        throw new Error("Something went wrong please try again") 
                     }
-                    swal({
-                        title:"Successfully Booked the event",
-                        text:"Do you want to proceed to payment?",
-                        icon:"success",
-                        buttons:["Cancel","Yes"]
-                    });
+                    // swal({
+                    //     title:"Successfully Booked the event",
+                    //     text:"Do you want to proceed to payment?",
+                    //     icon:"success",
+                    //     buttons:["Cancel","Yes"]
+                    // });
                 } catch (error) {
                     swal(error.message,"","error");
                 }

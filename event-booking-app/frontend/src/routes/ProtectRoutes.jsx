@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useEvent } from '../context/AppContext';
+import Loading from '../components/Loading';
 
 const ProtectRoutes = ({children}) => {
     const {isAuthenticated,loginUser, verifyToken} = useEvent();
@@ -15,7 +16,7 @@ const ProtectRoutes = ({children}) => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;  // Show loading state until authentication is verified
+        return <Loading/>;  // Show loading state until authentication is verified
     }
 //    console.log(user);
     return loginUser  ? children : <Navigate to="/login" />;

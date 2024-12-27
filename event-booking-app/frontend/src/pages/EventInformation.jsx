@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useEvent } from '../context/AppContext'
 import { useParams } from 'react-router-dom';
 import EventInfo from '../components/EventInfo';
+import Loading from '../components/Loading';
 const speakers  = [
   { name: "Alice Johnson", role: "AI Researcher", image: "/placeholder.svg?height=100&width=100" },
   { name: "Bob Smith", role: "Data Scientist", image: "/placeholder.svg?height=100&width=100" },
@@ -20,7 +21,7 @@ const EventInformation=()=>{
     init();
   },[]);
     return (
-    event?<EventInfo event={event} booked={booked} /> : <p>Loading</p>
+    event?<EventInfo event={event} booked={booked} /> : <Loading/>
   )
 }
 

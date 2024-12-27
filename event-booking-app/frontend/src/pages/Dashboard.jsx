@@ -61,12 +61,12 @@ const Dashboard = () => {
                                 <td>{event.timeFrame["from"]+'-'+event.timeFrame["to"]}</td>
                                 <td>{event.venue}</td>
                                 <td>
-                                    <Link to={`/edit-event/${event._id}`} className="btn btn-ghost btn-xs" onClick={() => handleEditEvent(event)}>
+                                    <a  href={`/edit-event/${event._id}`} className="btn btn-ghost btn-xs" >
                                         <Edit className="w-4 h-4" />
-                                    </Link>
-                                    <Link to={`/events/${event._id}`} className='btn btn-ghost btn-xs'>
+                                    </a>
+                                    <a href={`/events/${event._id}`} className='btn btn-ghost btn-xs'>
                                         <Eye className='w-4 h-4'/>
-                                    </Link>
+                                    </a>
                                     <button className="btn btn-ghost btn-xs" onClick={() => handleDeleteEvent(event._id)}>
                                         <Trash className="w-4 h-4" />
                                     </button>

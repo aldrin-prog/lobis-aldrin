@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar'
 const MyBookings = () => {
     const {userEvents,getEventUser,deleteEvent,myBookings,getUserBookings}=useEvent();
 
-    
+    console.log(myBookings);
     useEffect(()=>{
         getUserBookings();
     },[])

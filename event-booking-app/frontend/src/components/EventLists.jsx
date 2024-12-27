@@ -16,7 +16,7 @@ const EventLists = (props) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {events.map((event) => (
                     <div key={event._id} className="card shadow-lg">
-                        <div className="card-body">
+                        <div className="card-body" >
                             <h3 className="card-title">{event.name}</h3>
                             <p className="text-sm text-gray-600">
                                 <span className="flex items-center">

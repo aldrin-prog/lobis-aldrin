@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Payment from "../components/Payment";
 import { useEvent } from "../context/AppContext";
 import EventLists from "../components/EventLists";
+import Loading from "../components/Loading";
 
 const Events = ({ onSelectEvent }) => {
 
@@ -14,7 +15,7 @@ const Events = ({ onSelectEvent }) => {
     verifyToken();
   },[])
   return (
-    events ? <EventLists events={events}/> : "Loading"
+    events ? <EventLists events={events}/> : <Loading/>
   )
 };
 
